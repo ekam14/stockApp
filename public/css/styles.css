@@ -1,0 +1,54 @@
+body {
+    color: #333333;
+    font-family: arial;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 16px;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh
+}
+
+.main-content {
+    flex-grow: 1;
+    position: absolute;
+    top: 10%;
+    left: 35%;
+}
+
+.loginBox, .signupBox{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px 30px;
+}
+
+input {
+    border: 1px solid #cccccc;
+    padding: 8px;
+    margin: 10px;
+}
+
+.li-box {
+    color: black;
+    background-color: #c8c8c8;
+    border: 1px solid #cccccc;
+    padding: 14px;
+    margin: 2px;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+button {
+    cursor: pointer;
+    border: 1px solid #888888;
+    background: #888888;
+    color: white;
+    padding: 8px;
+}

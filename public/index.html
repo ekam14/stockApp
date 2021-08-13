@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>My Stock Website</title>
+    <link rel="icon" href="/images/icon.jpeg">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div class="loginBox">
+        <button type="submit" onclick="getLoginPage()">Login!</button>
+    </div>
+    <div class="main-content">
+        <form id='personalDetails'>
+            <p>Enter your Details.</p>
+            <input id='firstName' placeholder="Enter Your First Name" autocomplete="off" required><br>
+            <input id='lastName' placeholder="Enter Your Last Name" autocomplete="off" required><br>
+            <input id='email' type="email" placeholder="Enter Your MailId" autocomplete="off" required><br>
+            <input id='password' type="password" placeholder="Enter Your password" autocomplete="off" required>
+            <input type="checkbox" onclick="showPass()">Show Password<br>
+            <input id='dob' type="date" placeholder="Enter Your DOB" autocomplete="off" required><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src = './js/app.js'></script>
+</body>
+
+</html>
