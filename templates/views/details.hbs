@@ -9,10 +9,13 @@
 </head>
 
 <body>
+    <div class="buyButton" onclick="buyModal()">
+        <button>+ BUY</button>
+    </div>
     <div class="main-content">
-        <p>Company Name: {{Name}}</p>
-        <p>Symbol: {{symbol}}</p>
-        <p>Price: {{price}} USD</p>
+        Company Name: <p id="companyName">{{Name}}</p>
+        Symbol: <p id="symbol">{{symbol}}</p>
+        Price: <p id="price">{{price}} </p>USD
         <p>Description: {{Description}}</p>
         <p>Sector: {{Sector}}</p>
         <p>PE Ratio: {{PERatio}}</p>
@@ -20,6 +23,20 @@
         <p>52-Week High: {{WeekHigh}}</p>
         <p>52-Week Low: {{WeekLow}}</p>
     </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>{{Name}}</p>
+            <p>Max Buy Capacity: {{possibleQty}}</p>
+            <form id='stockBuyForm'>
+                <input type="text" id="stockQty" oninput="checkBalance({{possibleQty}})" placeholder="Stock Qty" autocomplete="off">
+                Price: <label >{{price}} USD</label>
+                <button type="submit">Buy</button>
+            </form>
+        </div>
+    </div>
+    <script src = './js/details.js'></script>
 </body>
 
 </html>

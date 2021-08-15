@@ -6,25 +6,27 @@ const showPass = () => {
 }
 
 if(loginForm){
-    loginForm.addEventListener('submit', (e) => {
+    loginForm.addEventListener('submit', async (e) => {
         e.preventDefault()
 
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
+        try{
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
 
-        const data = { email, password }
-        
-        fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        }).then((response) => {
-            // response does not throw catch
+            const data = { email, password }
+            
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+
             if(response.ok) window.location.href = '/purchase';
-            else alert(response.statusText);
-        })
+        }catch(err){
+            alert(err);
+        }
     })
 }
 

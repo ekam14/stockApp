@@ -1,13 +1,14 @@
 const mongoose = require('mongoose')
+const { Schema } = require('mongoose') 
 
 let schemaString = { type: String, required: true };
 let schemaNumber = { type: Number, required: true };
 
-const portfolioSchema = new mongoose.Schema({
+const portfolioSchema = new Schema({
     userId: { type: Schema.Types.ObjectId, ref: 'User', index: true },
     companyName: schemaString,
     symbol: schemaString,
-    boughPrice: schemaNumber,
+    boughtPrice: schemaNumber,
     quantity: schemaNumber,
     netAmount: schemaNumber
 },

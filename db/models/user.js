@@ -14,17 +14,26 @@ const userSchema = new mongoose.Schema({
     dob: { type: Date, required: true },
     amount: { type: Number, default: 10000 },
     netProfit: { type: Number, default: 0 },
-    netLoss: { type: Number, default: 0 }
+    netLoss: { type: Number, default: 0 },
+    tokens: [{ // for all logins
+        token: {
+            type: String, 
+            required: true
+        }
+    }]
 },
 {
     timestamps: true
 })
 
-// instance methods
-userSchema.methods.getAuthToken = function(){
+// instance methods -> generates token
+userSchema.methods.getAuthToken = async function(){
     const user = this;
 
-    const token = jwt.sign({ _id: user._id.toString() }, 'stockApp');
+    const token = jwt.sign({ _id: user._id.toString() }, 'stockApp'); // will create token on user _id
+
+    user.tokens = user.tokens.concat({token}) // add into user tokens
+    await user.save();
 
     return token;
 }
