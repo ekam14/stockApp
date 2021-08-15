@@ -104,12 +104,10 @@ app.get('/purchase', auth, (req, res) => {
 app.post('/purchaseStock', auth, async (req, res) =>{
     try{
         req.user.amount -= req.body.netAmount;
-        console.log(req.user.amount, req.body.netAmount, typeof(req.user.amount), typeof(req.body.netAmount));
         await req.user.save();
        
         // saving data to portfolio collection
         req.body.userId = req.user._id;
-        console.log(req.body);
         const portfolioData = new Portfolio(req.body);
         await portfolioData.save();
         
