@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Portfolio</title>
+    <link rel="icon" href="/images/icon.jpeg">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div class="main-content">
+        {{#each portfolioData as |p|}}
+            <div class="portfolioDiv" id={{p._id}} onclick="sellModal(this.id)">
+                <p>{{p.symbol}}</p>
+                <span class="companyName">{{p.companyName}}</p>
+                Bought Price: <p>{{p.boughtPrice}}</p>
+                Qty: <span class="qty">{{p.quantity}}</span>
+                CP: <span class="currentPrice">{{p.currentPrice}}</span>
+            </div>
+        {{/each}}
+
+        <div id="myModal" class="modal">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <script src = './js/portfolio.js'></script>
+</body>
+
+</html>

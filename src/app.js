@@ -10,6 +10,7 @@ const auth = require('../middleware/authorization')
 // Db Models
 const User = require('../db/models/user')
 const Portfolio = require('../db/models/portfolio')
+const Transactions = require('../db/models/transactions')
 
 // Helper Functions
 const { Trie } = require('../helperFunctions/triePreprocess')
@@ -69,8 +70,8 @@ app.post('/login', async (req, res) => {
     try{
         const user = await User.findByCred(req.body.email, req.body.password); // own method
         const token = await user.getAuthToken();
-        res.cookie('auth_token', token, { expires: new Date(Date.now() + 1800000)}); // 30 min expire time
-        res.cookie('amount', user.amount, { expires: new Date(Date.now() + 1800000)});
+        res.cookie('auth_token', token, { expires: new Date(Date.now() + 10800000)}); // 30 min expire time
+        res.cookie('amount', user.amount, { expires: new Date(Date.now() + 10800000)});
         return res.send(user);
     }catch(err){
         return res.status(400).send(err);
@@ -123,10 +124,27 @@ app.post('/purchaseStock', auth, async (req, res) =>{
 // portolio page
 app.get('/portfolio', auth, async (req, res) => {
     try{
-        const portfolioData = await Portfolio.findOne({userId: req.user._id});
-        console.log(portfolioData);
+        const portfolioData = await Portfolio.find({userId: req.user._id});
 
-        res.status(200).send('Portfolio Page');
+        for(let index = 0; index < portfolioData.length; index ++){
+            const price = await getPrice(portfolioData[index].symbol);
+            portfolioData[index].currentPrice = price;
+        }
+
+        res.render('portfolio', {
+            portfolioData
+        });
+    }catch(err){
+        console.log(err);
+        return res.status(500).send('Server is down, please try again later.')
+    }
+})
+
+// transaction page
+app.get('/transactions', auth, async (req, res) => {
+    try{
+        const transData = await Transactions.find({userId: req.user._id});
+        res.status(200).send(transData);
     }catch(err){
         return res.send(500).send('Server is down, please try again later.')
     }

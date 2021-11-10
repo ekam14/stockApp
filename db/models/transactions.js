@@ -1,9 +1,10 @@
 const mongoose = require('mongoose')
+const { Schema } = require('mongoose') 
 
 let schemaString = { type: String, required: true };
 let schemaNumber = { type: Number, required: true };
 
-const transactionSchema = new mongoose.Schema({
+const transactionSchema = new Schema({
     userId: { type: Schema.Types.ObjectId, ref: 'User', index: true },
     companyName: schemaString,
     symbol: schemaString,

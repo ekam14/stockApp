@@ -25,6 +25,29 @@ body {
     margin: 10px 30px;
 }
 
+.portfolioBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px 30px;
+}
+
+.portfolioDiv {
+    color: black;
+    background-color: #c8c8c8;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    margin: 2px;
+}
+
+.portfolioDiv .qty {
+    text-align: right;
+}
+
+.portfolioDiv .currentPrice {
+    text-align: right;
+}
+
 input {
     border: 1px solid #cccccc;
     padding: 8px;

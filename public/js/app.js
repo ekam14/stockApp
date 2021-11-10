@@ -77,8 +77,13 @@ if(stockForm) {
 }
 
 const getLoginPage = () => {
-    window.location.href = '/login'
+    window.location.href = '/login';
 }
+
+const portfolioPage = () => {
+    window.location.href = '/portfolio';
+}
+
 
 const logout = async () => {
     try{
@@ -91,7 +96,8 @@ const logout = async () => {
     
         if(response.ok) window.location.href = '/';
     }catch(err){
-        alert('Not Authorized')
+        alert('Not Authorized');
+        window.location.href = '/login';
     }
 }
 

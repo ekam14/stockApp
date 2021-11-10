@@ -14,7 +14,7 @@ const auth = async (req, res, next) => {
 
         next();
     }catch(err){
-        return res.status(401).send('Not Authorized')
+        return res.redirect('/login');
     }
 }
 
